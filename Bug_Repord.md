@@ -1,56 +1,43 @@
-🐞 Bug Report - Demoblaze Automation Testing
+# 🐞 Bug Report – Magento Automation Project
 
-Bug #1: "Add to Cart" Button Not Responsive After Alert
+## 🧪 Test Case: TC_COC_01
 
-Description: After dismissing the alert, clicking "Add to Cart" again has no effect.
+### ✅ Description:
+Checkout should reject invalid personal information (name, company, address, etc.)
 
-Steps to Reproduce:
+### 📋 Precondition:
+- Product ("Joust Duffle Bag") is already added to cart
+- User navigates to the checkout page
 
-Visit https://www.demoblaze.com/
+### 🔍 Test Steps:
+1. Enter email: `gmn@yahoo.com`
+2. Fill all fields (name, address, company, city, etc.) with invalid values like `1`
+3. Click "Next", then "Place Order"
 
-Click on any product
+### 🧾 Expected Result:
+System should **prevent checkout** and display error messages asking the user to re-enter valid information.
 
-Click "Add to cart"
+### ❌ Actual Result:
+System **accepted the invalid data** and proceeded with the order.
 
-Manually dismiss the alert
+### 🛠 Status: `❌ FAIL`
 
-Try clicking "Add to cart" again
+---
 
-Expected: Product should be added again or confirmation should appear
+## ✅ Passed Tests
 
-Actual: Nothing happens
+### TC_SI_01: Invalid Search Term
 
-Severity: Medium
+- Input: `"fish"`
+- Result: System displayed "Your search returned no results."
+- ✅ Pass
 
-Bug #2: Broken Product Images
+### TC_ATC_01: Add to Cart with Correct Quantity
 
-Description: Some product images on the homepage fail to load (404 error)
+- Input: `"bag"` → Add 10 items
+- Result: Quantity and total price calculated correctly.
+- ✅ Pass
 
-Steps to Reproduce:
-
-Open https://www.demoblaze.com/
-
-Expected: All product images should load
-
-Actual: Some images show broken icon
-
-Severity: Low
-
-Bug #3: Search Button Clickable with Empty Input
-
-Description: Clicking search with no input triggers a reload or unnecessary request
-
-Steps to Reproduce:
-
-Leave the search bar empty
-
-Click search button
-
-Expected: No action should be triggered or display a validation message
-
-Actual: Page reloads
-
-Severity: Low
 
 🔐 Security Testing
 
