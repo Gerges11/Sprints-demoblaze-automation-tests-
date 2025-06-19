@@ -51,3 +51,37 @@ Expected: No action should be triggered or display a validation message
 Actual: Page reloads
 
 Severity: Low
+
+🔐 Security Testing
+
+Test 1: XSS Injection
+
+@Test
+public void testXSSInjectionInSearch() {
+    HomePage homePage = new HomePage(driver);
+    homePage.search("<script>alert('XSS')</script>");
+
+    // Assuming a method to verify that no alert is triggered
+    Assert.assertFalse(homePage.isScriptExecuted(), "Potential XSS vulnerability detected!");
+}
+
+Test 2: SQL Injection
+
+@Test
+public void testSQLInjectionInSearch() {
+    HomePage homePage = new HomePage(driver);
+    homePage.search("1' OR '1'='1");
+
+    Assert.assertTrue(homePage.isNoSearchResultDisplayed(), "Potential SQL Injection vulnerability!");
+}
+
+✅ Additional Methods to Add in HomePage.java
+
+public boolean isScriptExecuted() {
+    try {
+        driver.switchTo().alert();
+        return true;
+    } catch (NoAlertPresentException e) {
+        return false;
+    }
+}
