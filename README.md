@@ -20,3 +20,6 @@ Or use Maven
 ## 📁 Structure
 - `pages/` → Page Object classes
 - `tests/` → TestNG test classes
+---
+👨‍💻 Author: Gerges Samer  
+📧 Contact: gergessamer511@gmail.com
